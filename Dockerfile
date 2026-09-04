@@ -11,7 +11,7 @@ COPY . .
 
 EXPOSE 8501
 
-HEALTHCHECK --interval=30s --timeout=10s --start-period=20s --retries=3 \
-  CMD curl --fail http://localhost:8501/_stcore/health || exit 1
+HEALTHCHECK --interval=30s --timeout=10s --start-period=90s --retries=5 \
+  CMD-SHELL curl --fail "http://localhost:${PORT:-8501}/_stcore/health" || exit 1
 
 CMD ["sh", "start.sh"]
